@@ -1,0 +1,32 @@
+{
+  "name": "ui-sample",
+  "version": "1.0.0",
+  "description": "sample project",
+  "main": "index.html",
+  "dependencies": {
+    "concat": "^0.0.1-security",
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/halerankin/ui-sample.git"
+  },
+  "keywords": [
+    "HTML5",
+    "CSS3",
+    "SASS",
+    "Node",
+    "Grunt"
+  ],
+  "author": "Hale Rankin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/halerankin/ui-sample/issues"
+  },
+  "homepage": "https://github.com/halerankin/ui-sample#readme"
+}
