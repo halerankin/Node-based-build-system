@@ -1,22 +1,30 @@
 // Config
+//
+// ------------------
 
 // fonts
-$main-font: '';
-$heading-font: 'arial, sans-serif';
+$main-font: 'Helvetica Neue', Arial, sans-serif;
+$heading-font: Helvetica, Arial, sans-serif;
 
 $base-font-size: 12px;
 
 // colors
-$link:		#cc0000;
-$heading: 	#666;
-$copy: 		#999;
+$color-black: #000;
+$color-black-alpha: rgba(0,0,0,0.5);
 
-// shapes
-$radius: 7px;
+$link-color: #cc0000;
+$heading-color: #666;
+$copy-color: #999;
+$form-color: #cecece;
+$border-color: #c987e2;
 
+// based shape properties
+$base-radius: 7px;
+$base-border: 1px solid $border-color;
+$base-shadow: 0 0 0 $color-black;
 
 // breakpoints
-$breakpoint-mobile: 340px;
-$breakpoint-tablet: 768px;
-$breakpoint-desktop: 1200px;
+$breakpoint-mobile-max-width: 340px;
+$breakpoint-tablet-max-width: 768px;
+$breakpoint-desktop-min-width: 980px;
 

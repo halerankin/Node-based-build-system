@@ -1,5 +1,6 @@
-// Classes
-
+// Utility Classes
+//
+// ------------------
 
 .clearfix:after {
 	clear: both;
@@ -10,21 +11,61 @@
 	visibility: hidden;
 }
 
-button, .button {
-
+.offscreen {
+    display: block;
+    left: -999999px;
+    position: absolute;
+    top: -999999px;
 }
+
+
+// Buttons
+.btn {
+    background: linear-gradient(to top, #dfdfdf 0, #fff 100%);
+    border: $base-border;
+    border-radius: $base-radius;
+    color: #3d89cc;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 20px;
+    text-align: center;
+    text-transform: uppercase;
+
+    &:focus, &:hover {
+    	background: #3d89cc;
+    	color: #fff;
+   		text-decoration: none;
+    }
+    &.btn-blue-solid {
+	    background: #3d89cc;
+	    border-color: #3d89cc;
+	    color: #fff;
+
+	    &:focus, &:hover {
+	    	background: #3779b3;
+	    }
+	}
+	@include breakpoint(mobile) {
+		display: block;
+        float: none;
+        width: 100%;
+	}
+}
+
+
+// Forms
 input {
-	appearance: none;
+	// Browser prefixes can be omitted when using 
+	// node plugin: grunt-autoprefixer.
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+	
 	border-radius: 0;
 }
 
 input[type="text"],
 input[type="textarea"],
-input[type="password"],
-input[type="submit"],
-input[type="submit"],
-input[type="reset"],
-input[type="radio"],
-input[type="checkbox"] {
-
+input[type="password"] {
+	background: $form-color;
 }

@@ -52,21 +52,27 @@ module.exports = function(grunt) {
       }
     },
     copy: {
-      main: {
+      styles: {
         files: [
-          // CSS - does nothing
-          { expand: true, cwd: 'src/assets/styles', src: [ '*.css' ], dest: 'build/assets/css/' },
-          // JS
-          { expand: true, cwd: 'src/assets/scripts', src: [ '*.js' ], dest: 'build/assets/js/' },
-          // Markup
-          { expand: true, cwd: 'src/assets', src: [ '**/*.html', '*.html' ], dest: 'build/' }
+          { expand: true, flatten: true, cwd: 'src/assets/styles', src: '*.css', dest: 'build/assets/css' },
+        ]
+      },
+      scripts: {
+        files: [
+          { expand: true, cwd: 'src/assets/scripts', src: '*.js', dest: 'build/assets/js' },
+        ]
+      },
+      html: {
+        files: [
+          { expand: true, flatten: true, cwd: 'src/html', src: '*.html', dest: 'build' },
+          { expand: true, cwd: 'src/', src: 'index.html', dest: 'build' }
         ]
       }
     }, 
     cssmin: {
       build: {
         files: {
-          'build/assets/css/main.css': [ 'build/**/*.css' ]
+          'build/assets/css/main.css': [ 'build/**/*.css' ]  
         }
       }
     },
@@ -85,25 +91,43 @@ module.exports = function(grunt) {
     },    
     sass: {
       dev: {
-        files: {
-          // 'src/assets/styles/main.css': 'src/assets/styles/_main.scss',
-          '<%= project.styles %>/main.css': '<%= project.styles %>/_main.scss',
-        }        
+        files: [
+          {
+            expand: true,
+            cwd: '<%= project.styles %>',
+            src: '<%= project.styles %>/_main.scss',
+            dest: 'css',
+            ext: '.css'
+            // 'src/assets/styles/main.css': 'src/assets/styles/_main.scss',
+            // '<%= project.styles %>/main.css': '<%= project.styles %>/_main.scss'
+          }
+        ]        
       },
       dist: {
-        files: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= project.styles %>',
+            src: '<%= project.styles %>/_main.scss',
+            dest: 'css',
+            ext: '.css'
+            // 'src/assets/styles/main.css': 'src/assets/styles/_main.scss',
+            // '<%= project.styles %>/main.css': '<%= project.styles %>/_main.scss'
+          }
+        ]   
+        // files: {
           // 'src/assets/styles/main.css': 'src/assets/styles/_main.scss',
-          'main.css': '_main.scss',
-        }
+          // 'main.css': '_main.scss'
+        // }
       }
     },
     watch: {
       css: {
-        files: '**/*.scss',
+        files: '<%= project.styles %>/*.scss',
         tasks: [ 'sass:dev' ]
       },
       scripts: {
-        files: [ '**/*.js' ],
+        files: [ '<%= project.js %>' ],
         tasks: [ 'jshint' ]
       }      
     }
@@ -135,11 +159,12 @@ module.exports = function(grunt) {
     'build',
     'Compiles all assets, copies files to build folder',
     // [ 'clean:build', 'sass', 'copy', 'stylesheets', 'scripts']
-    [ 'clean:build', 'watch', 'copy', 'stylesheets' ]
+    [ 'clean:build', 'sass:dev', 'copy', 'stylesheets' ]
   );
   grunt.registerTask(
     'default',
     'Watches the project for changes, builds them and runs a server',
-    [ 'build', 'connect', 'watch' ]
+    // [ 'build', 'connect', 'watch' ]
+    [ 'build', 'watch' ]
   );
 };
