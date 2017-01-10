@@ -1,13 +1,18 @@
 #UI-Sample
 
-Showing my build process.
+Showing a basic Node/Grunt build.
 
 ## Key components
 - npm modules
-	* babel - transpile ES6 to current JS
-	* babel cli
-	* grunt - task runner
-	* grunt-contrib-concat
-	* grunt-contrib-jshint - validate JS files
+  grunt-autoprefixer
+  grunt-contrib-clean
+  grunt-contrib-connect
+  grunt-contrib-copy
+  grunt-contrib-cssmin
+  grunt-contrib-jshint
+  grunt-contrib-sass
+  grunt-contrib-watch
+
 - SASS
+
 - HTML5
