@@ -1,0 +1,41 @@
+// Fonts & Typography 
+//
+// ------------------
+
+
+// Fonts
+@import url(http://fonts.googleapis.com/css?family=Maven+Pro:400,500);
+
+
+// Typography
+a {
+	color: $link-color;
+	font-family: $main-font;
+	font-size: $base-font-size;
+}
+
+p {
+	color: $copy-color;
+	font-family: $main-font;
+	font-size: $base-font-size;
+}
+
+h1 {
+	color: $heading-color;
+	font-family: $heading-font;
+	line-height: 1.2em;
+
+	// Implementing breakpoint mixin:
+	@include breakpoint(mobile) {
+		font-size: 20px;
+		margin-bottom: 5px;
+	}
+	@include breakpoint(tablet) {
+		font-size: 30px;
+		margin-bottom: 10px;
+	}
+	@include breakpoint(desktop) {
+		font-size: 60px;
+		margin-bottom: 20px;
+	}
+}
