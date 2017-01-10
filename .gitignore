@@ -1,4 +1,9 @@
 /node_modules
+
 /.sass-cache
+src/assets/styles/.sass-cache
+src/assets/styles/*.css.map
+
 .DS_Store
-*.css.map
+
+/build
