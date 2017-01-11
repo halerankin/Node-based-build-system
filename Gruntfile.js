@@ -8,11 +8,8 @@ module.exports = function(grunt) {
       images: '<%= project.assets %>/images',
       markup: '<%= project.assets %>/**/*.html',
       styles: '<%= project.assets %>/styles',
-      // sass: [ '<%= project.assets %>/styles/*.scss' ],
-      // js:   [ '<%= project.assets %>/scripts/**/*.js' ]
-      js:   [ '<%= project.assets %>/scripts/**/*.js' ],
+      scripts: '<%= project.assets %>/scripts/**/*.js',
       build:  'build'
-
     },
     autoprefixer: {
       build: {
@@ -25,23 +22,17 @@ module.exports = function(grunt) {
     clean: {
       build: {
         src: [ 'build' ]
-      },
-      stylesheets: {
-        src: [ 'build/assets/css/*.css', '!build/assets/css/main.css' ]
-      },
-      scripts: {
-        src: [ 'build/assets/scripts/*.js', '!build/assets/scripts/main.js' ]
       }
     },    
-    // concat: {
-    //   options: {
-    //     separator: ';'
-    //   },
-    //   dist: {
-    //     src: [ 'src/**/*.js' ],
-    //     dest: 'build/<%= pkg.name %>.js'
-    //   }
-    // },   
+    concat: {
+      options: {
+        separator: ';'
+      },
+      dist: {
+        src: [ 'src/assets/scripts/*.js' ],
+        dest: 'build/assets/js/main.js'
+      }
+    },   
     connect: {
       server: {
         options: {
@@ -52,14 +43,9 @@ module.exports = function(grunt) {
       }
     },
     copy: {
-      styles: {
-        files: [
-          { expand: true, flatten: true, cwd: 'src/assets/styles', src: '*.css', dest: 'build/assets/css' },
-        ]
-      },
       scripts: {
         files: [
-          { expand: true, cwd: 'src/assets/scripts', src: '*.js', dest: 'build/assets/js' },
+          { expand: true, cwd: 'src/assets/scripts/vendor', src: '*.js', dest: 'build/assets/js/vendor' },
         ]
       },
       html: {
@@ -77,7 +63,7 @@ module.exports = function(grunt) {
       }
     },
     jshint: {
-      files: ['Gruntfile.js', 'src/**/*.js'],
+      files: ['Gruntfile.js', 'src/assets/scripts/*.js'],
       options: {
         curly: true,
         eqeqeq: true,
@@ -91,43 +77,18 @@ module.exports = function(grunt) {
     },    
     sass: {
       dev: {
-        files: [
-          {
-            expand: true,
-            cwd: '<%= project.styles %>',
-            src: '<%= project.styles %>/_main.scss',
-            dest: 'css',
-            ext: '.css'
-            // 'src/assets/styles/main.css': 'src/assets/styles/_main.scss',
-            // '<%= project.styles %>/main.css': '<%= project.styles %>/_main.scss'
+        files: {
+            'build/assets/css/main.css': 'src/assets/styles/main.scss'
           }
-        ]        
-      },
-      dist: {
-        files: [
-          {
-            expand: true,
-            cwd: '<%= project.styles %>',
-            src: '<%= project.styles %>/_main.scss',
-            dest: 'css',
-            ext: '.css'
-            // 'src/assets/styles/main.css': 'src/assets/styles/_main.scss',
-            // '<%= project.styles %>/main.css': '<%= project.styles %>/_main.scss'
-          }
-        ]   
-        // files: {
-          // 'src/assets/styles/main.css': 'src/assets/styles/_main.scss',
-          // 'main.css': '_main.scss'
-        // }
       }
     },
     watch: {
-      css: {
-        files: '<%= project.styles %>/*.scss',
-        tasks: [ 'sass:dev' ]
+      sass: {
+        files: 'src/assets/styles/*.scss',
+        tasks: [ 'sass:dev', 'stylesheets' ]
       },
       scripts: {
-        files: [ '<%= project.js %>' ],
+        files: [ 'src/assets/scripts/*.js', 'Gruntfile.js' ],
         tasks: [ 'jshint' ]
       }      
     }
@@ -135,7 +96,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  // grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -146,25 +107,17 @@ module.exports = function(grunt) {
   grunt.registerTask(
     'stylesheets', 
     'Prefixes and minifies CSS',
-    // ['autoprefixer', 'cssmin', 'clean:stylesheets']
-    ['autoprefixer']
+    ['autoprefixer', 'cssmin']
   );
-  grunt.registerTask(
-    'scripts',
-    'Compiles JS files',
-    [ 'clean:scripts' ]
-  );
-
-  grunt.registerTask(
+  grunt.registerTask( 
     'build',
     'Compiles all assets, copies files to build folder',
-    // [ 'clean:build', 'sass', 'copy', 'stylesheets', 'scripts']
-    [ 'clean:build', 'sass:dev', 'copy', 'stylesheets' ]
+    [ 'clean:build', 'sass:dev', 'copy', 'stylesheets', 'concat' ]
   );
   grunt.registerTask(
     'default',
     'Watches the project for changes, builds them and runs a server',
-    // [ 'build', 'connect', 'watch' ]
-    [ 'build', 'watch' ]
+    [ 'build', 'connect', 'watch' ]
+    // [ 'build', 'watch' ]
   );
 };
