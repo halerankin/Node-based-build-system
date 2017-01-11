@@ -2,14 +2,96 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Page 2</title>
+	<title>Hale's Warehouse</title>
 
 	<link rel="stylesheet" href="assets/css/main.css">
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/vendor/modernizr-3.3.1-custom.min.js"></script>
 </head>
 <body>
-<h1>Page 2</h1>
-	
+	<div id="body-wrapper">
+
+		<nav role="navigation" class="skip-links">
+			<ul>
+				<li><a href="#global-nav" class="nav-jump" id="top">Skip to main navigation</a></li>
+				<li><a href="#main-content">Skip to content</a></li>
+				<li><a href="#global-footer">Skip to footer</a></li>
+			</ul>
+		</nav>
+
+		<header id="global-header">
+			<div class="container">
+				<h1><a href="/">Hale's Widgets</a></h1>
+				<nav id="global-nav" role="navigation">
+					<ul>
+						<li>
+							<a href="/item-one/" class="nav-primary nav-membership">Page One <span class="offscreen">expand</span></a>
+							
+							<ul>
+								<li>
+									<a href="/item-one/sub-a/">Item One: Subitem A</a>
+								</li>
+								<li>
+									<a href="/item-one/sub-b">Item One: Subitem B</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="/item-two/" class="nav-primary">Page Two <span class="offscreen">expand</span></a>
+						</li>
+						<li>
+							<a href="/item-three/" class="nav-primary">Page Three <span class="offscreen">expand</span></a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+
+		<div id="main-content">
+			<section class="hero">
+				<div class="bg-image bg-responsive" 
+					data-url="path/to/desktop/image.jpg"
+					data-url-mobile="path/to/mobile/image.jpg">
+				</div>
+				<div class="container">
+					<h1>Home page section title</h1>
+					<p class="section-title alt">Section subtitle copy</p>
+				</div>
+			</section>
+
+			<section class="primary">
+				<div class="content-block">Content block</div>
+			</section>
+		</div>
+
+		<footer id="global-footer">
+			<div class="row">
+				<div class="column">
+					<h3>Footer Column One</h3>
+					<ul>
+						<li><a href="#">footer item 1</a></li>
+						<li><a href="#">footer item 2</a></li>
+						<li><a href="#">footer item 3</a></li>	
+					</ul>
+				</div>
+				<div class="column">
+					<h3>Footer Column Two</h3>
+					<ul>
+						<li><a href="#">footer item 1</a></li>
+						<li><a href="#">footer item 2</a></li>
+						<li><a href="#">footer item 3</a></li>	
+					</ul>
+				</div>
+				<div class="column">
+					<h3>Footer Column Three</h3>
+					<ul>
+						<li><a href="#">footer item 1</a></li>
+						<li><a href="#">footer item 2</a></li>
+						<li><a href="#">footer item 3</a></li>	
+					</ul>
+				</div>
+			</div>
+		</footer>
+	</div>
 </body>
 </html>
