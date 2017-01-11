@@ -121,17 +121,17 @@ module.exports = function(grunt) {
 
   grunt.registerTask(
     'stylesheets', 
-    'Prefixes and minifies CSS',
+    'Subtask: Prefixes and minifies CSS.',
     ['autoprefixer', 'cssmin']
   );
   grunt.registerTask( 
     'build',
-    '<%= project.scripts %> Compiles all assets, copies files to build folder',
+    'Cleans build destination, compiles SASS and JS, copies files to build destination, minifies CSS and concats JS.',
     [ 'clean:build', 'sass:dev', 'copy', 'stylesheets', 'concat' ]
   );
   grunt.registerTask(
     'default',
-    'Watches the project for changes, builds them and runs a server',
+    'Builds project, starts a static HTTP server and watches for changes to SASS and JS.',
     [ 'build', 'connect', 'watch' ]
   );
 };
