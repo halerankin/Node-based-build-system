@@ -1,4 +1,4 @@
-#UI-Sample
+#Web Development Build System
 This is a Node/Grunt build system. Developers can modify contents in the `src` folder, run grunt processes to either build or watch their files, and see output in the build destination folder served via a static server. Ideal for prototyping UI development and packing it up for serving. 
 
 ## Dev dependencies

@@ -1,7 +1,7 @@
 {
-  "name": "ui-sample",
+  "name": "WebDev Build System",
   "version": "1.0.0",
-  "description": "sample project",
+  "description": "Web development build system utilizing Node, Grunt and SASS.",
   "main": "index.html",
   "dependencies": {
     "grunt": "^1.0.1"
