@@ -25,7 +25,12 @@ Each dependency listed links to relevant documentation.
 - Mix-in for breakpoints already added
 
 ### HTML5
-- Basic page structure provided
+Basic page structure provided:
+- head, referencing stylesheet and JS
+- nav, containing skip-links
+- header, containing navigation
+- main content, containing hero and primary content
+- footer
 
 ### JS
 - Basic app and utility files provided.
