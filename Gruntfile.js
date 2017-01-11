@@ -3,25 +3,32 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     project: {
-      src:    'src',
-      assets: '<%= project.src %>/assets/',
-      images: '<%= project.assets %>/images',
-      markup: '<%= project.assets %>/**/*.html',
-      styles: '<%= project.assets %>/styles',
-      scripts: '<%= project.assets %>/scripts/**/*.js',
-      build:  'build'
+      source:       'src',
+      assets:       '<%= project.source %>/assets',
+      images:       '<%= project.assets %>/images',
+      markup:       '<%= project.source %>/html',
+      styles:       '<%= project.assets %>/styles',
+      scripts:      '<%= project.assets %>/scripts',
+      vendor:       '<%= project.scripts %>/vendor',
+
+      build:        'build',
+      buildAssets:  '<%= project.build %>/assets',
+      buildImages:  '<%= project.buildAssets %>/images',
+      buildStyles:  '<%= project.buildAssets %>/css',
+      buildScripts: '<%= project.buildAssets %>/js',
+      buildVendor:  '<%= project.buildScripts %>/vendor',
     },
     autoprefixer: {
       build: {
         expand: true,
-        cwd: 'build',
+        cwd: '<%= project.build %>',
         src: [ '**/*.css' ],
-        dest: 'build'
+        dest: '<%= project.build %>'
       }
     },
     clean: {
       build: {
-        src: [ 'build' ]
+        src: [ '<%= project.build %>' ]
       }
     },    
     concat: {
@@ -29,15 +36,15 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: [ 'src/assets/scripts/*.js' ],
-        dest: 'build/assets/js/main.js'
+        src: [ '<%= project.scripts %>/*.js' ],
+        dest: '<%= project.buildScripts %>/main.js'
       }
     },   
     connect: {
       server: {
         options: {
           port: 3333,
-          base: 'build',
+          base: '<%= project.build %>',
           hostname: 'localhost'
         }
       }
@@ -45,25 +52,30 @@ module.exports = function(grunt) {
     copy: {
       scripts: {
         files: [
-          { expand: true, cwd: 'src/assets/scripts/vendor', src: '*.js', dest: 'build/assets/js/vendor' },
+          { expand: true, cwd: '<%= project.vendor %>', src: '*.js', dest: '<%= project.buildVendor %>' },
         ]
       },
       html: {
         files: [
-          { expand: true, flatten: true, cwd: 'src/html', src: '*.html', dest: 'build' },
-          { expand: true, cwd: 'src/', src: 'index.html', dest: 'build' }
+          { expand: true, cwd: '<%= project.source %>', src: '*.html', dest: '<%= project.build %>' },
+          { expand: true, flatten: true, cwd: '<%= project.markup %>', src: '*.html', dest: '<%= project.build %>' }
+        ]
+      },
+      images: {
+        files: [
+          { expand: true, cwd: '<%= project.images %>', src: '*.*', dest: '<%= project.buildImages %>' }
         ]
       }
     }, 
     cssmin: {
       build: {
         files: {
-          'build/assets/css/main.css': [ 'build/**/*.css' ]  
+          '<%= project.buildStyles %>/main.css': [ '<%= project.build %>/**/*.css' ]  
         }
       }
     },
     jshint: {
-      files: ['Gruntfile.js', 'src/assets/scripts/*.js'],
+      files: ['Gruntfile.js', '<%= project.scripts %>/*.js'],
       options: {
         curly: true,
         eqeqeq: true,
@@ -77,18 +89,21 @@ module.exports = function(grunt) {
     },    
     sass: {
       dev: {
+        options: {
+          sourcemap: 'none'
+        },
         files: {
-            'build/assets/css/main.css': 'src/assets/styles/main.scss'
+            '<%= project.buildStyles %>/main.css': 'src/assets/styles/main.scss' 
           }
       }
     },
     watch: {
       sass: {
-        files: 'src/assets/styles/*.scss',
+        files: '<%= project.styles %>/*.scss',
         tasks: [ 'sass:dev', 'stylesheets' ]
       },
       scripts: {
-        files: [ 'src/assets/scripts/*.js', 'Gruntfile.js' ],
+        files: [ '<%= project.scripts %>/*.js', 'Gruntfile.js' ],
         tasks: [ 'jshint' ]
       }      
     }
@@ -111,13 +126,12 @@ module.exports = function(grunt) {
   );
   grunt.registerTask( 
     'build',
-    'Compiles all assets, copies files to build folder',
+    '<%= project.scripts %> Compiles all assets, copies files to build folder',
     [ 'clean:build', 'sass:dev', 'copy', 'stylesheets', 'concat' ]
   );
   grunt.registerTask(
     'default',
     'Watches the project for changes, builds them and runs a server',
     [ 'build', 'connect', 'watch' ]
-    // [ 'build', 'watch' ]
   );
 };
