@@ -1,5 +1,5 @@
 {
-  "name": "WebDev Build System",
+  "name": "Web-Dev-Build-System-01",
   "version": "1.0.0",
   "description": "Web development build system utilizing Node, Grunt and SASS.",
   "main": "index.html",
