@@ -24,13 +24,7 @@
     "type": "git",
     "url": "git+https://github.com/halerankin/ui-sample.git"
   },
-  "keywords": [
-    "HTML5",
-    "CSS3",
-    "SASS",
-    "Node",
-    "Grunt"
-  ],
+  "keywords": [ "HTML5","CSS3","SASS","Node","Grunt" ],
   "author": "Hale Rankin",
   "license": "ISC",
   "bugs": {
