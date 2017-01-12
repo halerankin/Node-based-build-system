@@ -32,8 +32,8 @@ Basic page structure provided:
 - main content, containing hero and primary content
 - footer
 
-### JS
-- Basic app and utility files provided.
+### JS (in progress)
+- Empty app and utility files provided.
 - Custom Modernizr library provided.
 
 ## Installation instructions
