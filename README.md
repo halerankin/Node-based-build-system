@@ -37,22 +37,23 @@ Basic page structure provided:
 - Custom Modernizr library provided.
 
 ## Installation instructions
-- Clone git repo
-- Install dev dependencies
+- Clone git repo.
+- Install dev dependencies.
+- At root of project, where `package.json` resides, type: `npm install` to install project node modules.
 
 ## Dev/Build instructions
-Run `grunt` default task to launch build, connect and watch processes. For more for details on each specific npm task, please examine `Gruntfile.js`.
+Run default grunt task: `grunt` to launch **build**, **connect** and **watch** processes. For more for details on each specific npm task, please examine `Gruntfile.js`. Brief descriptions provided below:
 
-Build:
+**build**
 - Clean the build destination folder (if already present) at project root.
 - Compile SASS files into a singular CSS file.
 - Copy images, HTML files and JS vendor files to the build destination.
 - Autoprefix CSS properties and minify CSS file located in the build destination folder.
 - Concatenate application JS files into a singular JS file and add to build destination.
 
-Connect:
+**connect**
 - Run a local static http server, serving the build destination files.
 
-Watch:
+**watch**
 - Watch SASS files for changes, then compile to CSS.
 - Watch JS files for changes, evaluate via JSHint and output any necessary error messages.
